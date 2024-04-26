@@ -7,9 +7,9 @@ function BackButton() {
 			onClick={() => {
 				navigate(-1);
 			}}
-			className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white font-medium text-blue-600 transition-all duration-300 hover:w-32 border-2 border-blue-500"
+			className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white font-medium text-blue-600 transition-all duration-300 hover:w-28 border-2 border-blue-500"
 		>
-			<div className="absolute left-3.5 rotate-180">
+			<div className="absolute left-3 rotate-180">
 				<svg
 					width="15"
 					height="15"
@@ -26,7 +26,7 @@ function BackButton() {
 					></path>
 				</svg>
 			</div>
-			<div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+			<div className="inline-flex whitespace-nowrap opacity-0 transition-all duration-200 group-hover:translate-x-1.5 group-hover:opacity-100">
 				Back
 			</div>
 		</button>

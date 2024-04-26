@@ -1,11 +1,13 @@
 import Button from "../components/Button";
 import { CiMail } from "react-icons/ci";
 import { CiPhone } from "react-icons/ci";
-import StarRating from "../components/StarRating";
 import { MdFavoriteBorder } from "react-icons/md";
 import Swal from "sweetalert2";
+import { useLoaderData } from "react-router-dom";
+import ProfileHeader from "../components/ProfileHeader";
 
-function Home() {
+function ContactProfile() {
+	const profile = useLoaderData();
 	const handleDelete = function () {
 		Swal.fire({
 			title: "Are you sure?",
@@ -31,29 +33,26 @@ function Home() {
 		<main className="py-14 px-20">
 			<figure className="flex lg:flex-row flex-col lg:gap-14 gap-5 items-center">
 				<img
-					src="https://mighty.tools/mockmind-api/content/human/57.jpg"
+					src={profile.photo}
 					alt="person name"
 					className="lg:w-1/3 md:w-1/2 rounded-full"
 				/>
 				<figcaption>
-					<div className="flex gap-3 items-center">
-						<h2 className="font-bold text-4xl">Henri Helvetica </h2>
-						<StarRating />
-					</div>
+					<ProfileHeader fullName={`${profile.First} ${profile.Last}`} />
 
 					<div className="*:flex *:items-center *:gap-3 bg-[#F0F4F9] rounded-lg p-6 mb-5 first:*:text-xl first:*:font-medium mt-5 space-y-3 text-lg">
 						<h3>Contact details</h3>
 						<p>
 							<CiMail />
-							<span>name@gmail.com</span>
+							<span>{profile.email}</span>
 						</p>
 						<p>
 							<CiPhone />
-							<span>01988339922</span>
+							<span>{profile.phone}</span>
 						</p>
 						<p>
 							<MdFavoriteBorder />
-							<span>Ice Cream</span>
+							<span>{profile.message}</span>
 						</p>
 					</div>
 
@@ -69,4 +68,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default ContactProfile;

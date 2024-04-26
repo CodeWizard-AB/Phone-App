@@ -4,23 +4,26 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-import Home from "./Pages/Home.jsx";
 import NotFound from "./Pages/NotFound.jsx";
 import Form from "./Pages/Form.jsx";
+import ContactProfile from "./Pages/ContactProfile.jsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
 		errorElement: <NotFound />,
+		loader: () => fetch("http://localhost:5000/contacts"),
 		children: [
 			{
 				path: "/add-new-contact",
 				element: <Form />,
 			},
 			{
-				path: "/home",
-				element: <Home />,
+				path: "/contacts/:id",
+				element: <ContactProfile />,
+				loader: ({ params }) =>
+					fetch(`http://localhost:5000/contacts/${params.id}`),
 			},
 		],
 	},

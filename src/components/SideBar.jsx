@@ -1,12 +1,13 @@
+/* eslint-disable react/prop-types */
 import { Sidebar, Menu, MenuItem, sidebarClasses } from "react-pro-sidebar";
 // import { slide as Menu } from "react-burger-menu";
 // import { IoMenu } from "react-icons/io5";
 // import { IoIosClose } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
-// import { useState } from "react";
 
-function SideBar() {
+function SideBar({ contacts }) {
+	const navigate = useNavigate();
 	return (
 		<Sidebar
 			width="auto"
@@ -15,7 +16,7 @@ function SideBar() {
 					backgroundColor: "#F7F7F7",
 					height: "100vh",
 				},
-				[`.${sidebarClasses.container} > *:not(:first-child)`]: {
+				[`.${sidebarClasses.container} > *:not(:first-of-type)`]: {
 					padding: "0px 20px",
 					borderRadius: "4px",
 				},
@@ -34,13 +35,28 @@ function SideBar() {
 					<Button>New</Button>
 				</Link>
 			</div>
-			<Menu>
-				<MenuItem>
-					<Link>Henri Helvetica</Link>
-				</MenuItem>
+			<Menu
+				menuItemStyles={{
+					button: ({ level, active, disabled }) => {
+						if (level === 0)
+							return {
+								color: disabled ? "#f5d9ff" : "#d359ff",
+								backgroundColor: active ? "red" : undefined,
+							};
+					},
+				}}
+			>
+				{contacts.map((contact) => (
+					<MenuItem
+						onClick={() => navigate(`/contacts/${contact._id}`)}
+						key={contact._id}
+					>
+						{contact.First} {contact.Last}
+					</MenuItem>
+				))}
 			</Menu>
 			<figure className="absolute !flex text-xl font-semibold gap-3 bottom-0 left-0 w-full !py-4 border-t-2 justify-center">
-				<img src="react-router.svg" alt="react router icon" className="w-12" />
+				<img src="../react-router.svg" alt="react router icon" className="w-12" />
 				<figcaption>React Router Contacts</figcaption>
 			</figure>
 		</Sidebar>
