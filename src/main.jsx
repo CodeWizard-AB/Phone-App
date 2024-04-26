@@ -5,15 +5,16 @@ import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home.jsx";
+import NotFound from "./Pages/NotFound.jsx";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <App />,
-		errorElement: <div>Not found</div>,
+		errorElement: <NotFound />,
 		children: [
 			{
-				path: "/",
+				path: "/home",
 				element: <Home />,
 			},
 		],
