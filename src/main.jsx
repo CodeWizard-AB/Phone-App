@@ -1,11 +1,12 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./Pages/Home.jsx";
 import NotFound from "./Pages/NotFound.jsx";
+import Form from "./Pages/Form.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
 		element: <App />,
 		errorElement: <NotFound />,
 		children: [
+			{
+				path: "/add-new-contact",
+				element: <Form />,
+			},
 			{
 				path: "/home",
 				element: <Home />,

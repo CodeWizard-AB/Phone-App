@@ -30,7 +30,9 @@ function SideBar() {
 					placeholder="Search"
 					className="py-2.5 rounded-lg px-4 mr-4 outline-none border shadow-sm"
 				/>
-				<Button>New</Button>
+				<Link to="/add-new-contact">
+					<Button>New</Button>
+				</Link>
 			</div>
 			<Menu>
 				<MenuItem>
