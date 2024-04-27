@@ -3,7 +3,7 @@ import SideBar from "./components/SideBar";
 import { useState } from "react";
 
 function App() {
-	const [contacts] = useState(useLoaderData());
+	const [contacts, setContacts] = useState(useLoaderData());
 	return (
 		<div className="grid grid-cols-[auto_1fr]">
 			<SideBar contacts={contacts} />

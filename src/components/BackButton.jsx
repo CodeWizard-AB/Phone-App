@@ -1,11 +1,12 @@
+/* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 
-function BackButton() {
+function BackButton({to}) {
 	const navigate = useNavigate();
 	return (
 		<button
 			onClick={() => {
-				navigate(-1);
+				navigate(to);
 			}}
 			className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white font-medium text-blue-600 transition-all duration-300 hover:w-28 border-2 border-blue-500"
 		>

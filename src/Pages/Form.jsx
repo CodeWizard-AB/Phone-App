@@ -28,7 +28,7 @@ function Form() {
 	};
 	return (
 		<div className="py-10 px-16 max-w-screen-lg h-min">
-			<BackButton />
+			<BackButton to="/" />
 			<form
 				className="grid grid-cols-[auto_1fr_1fr] items-center gap-5 mt-5"
 				onSubmit={handleSumbit}

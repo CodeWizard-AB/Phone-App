@@ -7,6 +7,7 @@ import "./index.css";
 import NotFound from "./Pages/NotFound.jsx";
 import Form from "./Pages/Form.jsx";
 import ContactProfile from "./Pages/ContactProfile.jsx";
+import UpdateProfile from "./Pages/UpdateProfile.jsx";
 
 const router = createBrowserRouter([
 	{
@@ -22,8 +23,14 @@ const router = createBrowserRouter([
 			{
 				path: "/contacts/:id",
 				element: <ContactProfile />,
-				loader: ({ params }) =>
-					fetch(`http://localhost:5000/contacts/${params.id}`),
+				loader: ({ params: { id } }) =>
+					fetch(`http://localhost:5000/contacts/${id}`),
+			},
+			{
+				path: "/contacts/:id/profile",
+				element: <UpdateProfile />,
+				loader: ({ params: { id } }) =>
+					fetch(`http://localhost:5000/contacts/${id}`),
 			},
 		],
 	},

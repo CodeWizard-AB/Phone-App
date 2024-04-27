@@ -1,13 +1,14 @@
 import Button from "../components/Button";
-import { CiMail } from "react-icons/ci";
-import { CiPhone } from "react-icons/ci";
+import { IoMailOutline } from "react-icons/io5";
+import { IoCallOutline } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import ProfileHeader from "../components/ProfileHeader";
 
 function ContactProfile() {
 	const profile = useLoaderData();
+	const navigate = useNavigate();
 	const handleDelete = function () {
 		Swal.fire({
 			title: "Are you sure?",
@@ -19,11 +20,17 @@ function ContactProfile() {
 			confirmButtonText: "Yes, delete it!",
 		}).then((result) => {
 			if (result.isConfirmed) {
-				Swal.fire({
-					title: "Deleted!",
-					text: "Your contact has been deleted.",
-					icon: "success",
-					confirmButtonColor: "#3085d6",
+				fetch(`http://localhost:5000/contacts/${profile._id}`, {
+					method: "DELETE",
+				}).then(() => {
+					Swal.fire({
+						title: "Deleted!",
+						text: "Your contact has been deleted.",
+						icon: "success",
+						confirmButtonColor: "#3085d6",
+					}).then((result) => {
+						result.isConfirmed && navigate("/");
+					});
 				});
 			}
 		});
@@ -43,11 +50,11 @@ function ContactProfile() {
 					<div className="*:flex *:items-center *:gap-3 bg-[#F0F4F9] rounded-lg p-6 mb-5 first:*:text-xl first:*:font-medium mt-5 space-y-3 text-lg">
 						<h3>Contact details</h3>
 						<p>
-							<CiMail />
+							<IoMailOutline />
 							<span>{profile.email}</span>
 						</p>
 						<p>
-							<CiPhone />
+							<IoCallOutline />
 							<span>{profile.phone}</span>
 						</p>
 						<p>
@@ -57,7 +64,9 @@ function ContactProfile() {
 					</div>
 
 					<div className="flex gap-4">
-						<Button>Edit</Button>
+						<Link to={`/contacts/${profile._id}/profile`}>
+							<Button>Edit</Button>
+						</Link>
 						<Button textColor="text-red-700" event={handleDelete}>
 							Delete
 						</Button>

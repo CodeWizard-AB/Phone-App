@@ -5,6 +5,7 @@ import { Sidebar, Menu, MenuItem, sidebarClasses } from "react-pro-sidebar";
 // import { IoIosClose } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "./Button";
+import Selection from "./Selection";
 
 function SideBar({ contacts }) {
 	const navigate = useNavigate();
@@ -25,27 +26,19 @@ function SideBar({ contacts }) {
 			collapsedWidth="10px"
 			className="relative"
 		>
-			<div className="flex items-center border-b-2 pb-10 lg:py-5 px-4 mb-4">
+			<div className="grid grid-cols-[1fr_auto] items-center border-b-2 pb-10 lg:py-5 px-4 mb-4 gap-4">
 				<input
 					type="text"
 					placeholder="Search"
-					className="py-2.5 rounded-lg px-4 mr-4 outline-none border shadow-sm"
+					className="py-2.5 rounded-lg px-4 outline-none border border-[#cccccc] shadow-sm"
 				/>
 				<Link to="/add-new-contact">
 					<Button>New</Button>
 				</Link>
+
+				<Selection />
 			</div>
-			<Menu
-				menuItemStyles={{
-					button: ({ level, active, disabled }) => {
-						if (level === 0)
-							return {
-								color: disabled ? "#f5d9ff" : "#d359ff",
-								backgroundColor: active ? "red" : undefined,
-							};
-					},
-				}}
-			>
+			<Menu>
 				{contacts.map((contact) => (
 					<MenuItem
 						onClick={() => navigate(`/contacts/${contact._id}`)}
@@ -56,7 +49,11 @@ function SideBar({ contacts }) {
 				))}
 			</Menu>
 			<figure className="absolute !flex text-xl font-semibold gap-3 bottom-0 left-0 w-full !py-4 border-t-2 justify-center">
-				<img src="../react-router.svg" alt="react router icon" className="w-12" />
+				<img
+					src="../react-router.svg"
+					alt="react router icon"
+					className="w-12"
+				/>
 				<figcaption>React Router Contacts</figcaption>
 			</figure>
 		</Sidebar>
