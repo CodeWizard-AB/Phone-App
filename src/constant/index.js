@@ -19,4 +19,5 @@ const form = [
 		id: "photo",
 	},
 ];
+
 export default form;

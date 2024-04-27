@@ -3,18 +3,21 @@ import { Sidebar, Menu, MenuItem, sidebarClasses } from "react-pro-sidebar";
 // import { slide as Menu } from "react-burger-menu";
 // import { IoMenu } from "react-icons/io5";
 // import { IoIosClose } from "react-icons/io";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import Button from "./Button";
 import Selection from "./Selection";
+import { useTheme } from "../contexts/ThemeController";
 
-function SideBar({ contacts }) {
+function SideBar() {
+	const contacts = useLoaderData();
+	const { theme } = useTheme();
 	const navigate = useNavigate();
 	return (
 		<Sidebar
 			width="auto"
 			rootStyles={{
 				[`.${sidebarClasses.container}`]: {
-					backgroundColor: "#F7F7F7",
+					backgroundColor: theme === "light" ? "#F7F7F7" : "black",
 					height: "100vh",
 				},
 				[`.${sidebarClasses.container} > *:not(:first-of-type)`]: {

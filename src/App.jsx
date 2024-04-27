@@ -1,12 +1,12 @@
-import { Outlet, useLoaderData } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import SideBar from "./components/SideBar";
-import { useState } from "react";
+import ToggleButton from "./components/ToggleButton";
 
 function App() {
-	const [contacts, setContacts] = useState(useLoaderData());
 	return (
 		<div className="grid grid-cols-[auto_1fr]">
-			<SideBar contacts={contacts} />
+			<SideBar />
+			<ToggleButton />
 			<Outlet />
 		</div>
 	);

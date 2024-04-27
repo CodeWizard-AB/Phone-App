@@ -1,14 +1,20 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../contexts/ThemeController";
 
-function BackButton({to}) {
+function BackButton({ to }) {
 	const navigate = useNavigate();
+	const { theme } = useTheme();
 	return (
 		<button
 			onClick={() => {
 				navigate(to);
 			}}
-			className="group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white font-medium text-blue-600 transition-all duration-300 hover:w-28 border-2 border-blue-500"
+			className={`group relative inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white font-medium ${
+				theme === "light"
+					? "text-blue-600 border-blue-500"
+					: "text-black border-white"
+			} transition-all duration-300 hover:w-28 border-2`}
 		>
 			<div className="absolute left-3 rotate-180">
 				<svg

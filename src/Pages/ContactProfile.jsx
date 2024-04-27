@@ -5,8 +5,10 @@ import { MdFavoriteBorder } from "react-icons/md";
 import Swal from "sweetalert2";
 import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import ProfileHeader from "../components/ProfileHeader";
+import { useTheme } from "../contexts/ThemeController";
 
 function ContactProfile() {
+	const { theme } = useTheme();
 	const profile = useLoaderData();
 	const navigate = useNavigate();
 	const handleDelete = function () {
@@ -47,7 +49,13 @@ function ContactProfile() {
 				<figcaption>
 					<ProfileHeader fullName={`${profile.First} ${profile.Last}`} />
 
-					<div className="*:flex *:items-center *:gap-3 bg-[#F0F4F9] rounded-lg p-6 mb-5 first:*:text-xl first:*:font-medium mt-5 space-y-3 text-lg">
+					<div
+						className={`*:flex *:items-center *:gap-3 ${
+							theme === "light"
+								? "bg-[#F0F4F9]"
+								: "bg-black border-2 border-white"
+						} rounded-lg p-6 mb-5 first:*:text-xl first:*:font-medium mt-5 space-y-3 text-lg`}
+					>
 						<h3>Contact details</h3>
 						<p>
 							<IoMailOutline />

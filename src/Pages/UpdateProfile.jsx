@@ -70,7 +70,7 @@ function UpdateProfile() {
 				></textarea>
 				<div className="col-start-2 space-x-4">
 					<Button event={handleUpdate}>Save</Button>
-					<Button textColor="black" event={handleCancel}>
+					<Button textColor="text-black" event={handleCancel}>
 						Cancel
 					</Button>
 				</div>

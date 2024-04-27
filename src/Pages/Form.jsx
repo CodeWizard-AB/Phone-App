@@ -7,11 +7,13 @@ import Swal from "sweetalert2";
 function Form() {
 	const handleSumbit = function (e) {
 		e.preventDefault();
+		
 		const newContact = {};
 		[...e.target].slice(0, -1).forEach((item) => {
 			newContact[item.id] = item.value;
 			item.value = "";
 		});
+
 		fetch("http://localhost:5000/contacts", {
 			method: "POST",
 			headers: { "content-type": "application/json" },
@@ -26,6 +28,7 @@ function Form() {
 			});
 		});
 	};
+	
 	return (
 		<div className="py-10 px-16 max-w-screen-lg h-min">
 			<BackButton to="/" />
